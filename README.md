@@ -1,8 +1,12 @@
 # Fontalis - AI Assistant CHATBOT
 
-![CSS](https://img.shields.io/badge/CSS-663399?style=flat&logo=css&logoColor=white)&nbsp;&nbsp; ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white)&nbsp;&nbsp; ![JSON](https://img.shields.io/badge/JSON-000000?style=flat&logo=json&logoColor=white)&nbsp;&nbsp; ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-663399?style=flat&logo=css&logoColor=white)
+![WordPress](https://img.shields.io/badge/WordPress-21759B?style=flat&logo=wordpress&logoColor=white)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-96588A?style=flat&logo=woocommerce&logoColor=white)
 
-Este projeto é um plugin para WordPress que implementa um assistente virtual baseado na API Google Gemini (modelos Flash e Pro). O sistema utiliza *Function Calling* para integrar capacidades de IA generativa com operações de e-commerce do WooCommerce, permitindo que o assistente busque produtos, gerencie o carrinho de compras e ofereça kits de especialidades baseados em regras de negócio específicas, mantendo diretrizes estritas de moderação de conteúdo.
+Este projeto é um plugin para WordPress que implementa um assistente virtual baseado na API Google Gemini (modelos Flash e Pro). O sistema utiliza _Function Calling_ para integrar capacidades de IA generativa com operações de e-commerce do WooCommerce, permitindo que o assistente busque produtos, gerencie o carrinho de compras e ofereça kits de especialidades baseados em regras de negócio específicas, mantendo diretrizes estritas de moderação de conteúdo.
 
 ## Funcionalidades
 
@@ -65,22 +69,62 @@ if ($response['success']) {
 ## Estrutura do Projeto
 
 ```
-backend/
-├── config/
-│   ├── constants.php       # Definições de constantes, limites e nonces
-│   └── security.php        # Geração de chaves de ofuscação e segurança
-└── core/
-    ├── FontalisBot.php     # Lógica principal, loop do agente e execução de ferramentas
-    └── GeminiConfig.php    # Configuração da API Gemini e definições de Tools (Schema JSON)
+fontalis-chat-popup/
+├── backend/
+│   ├── config/
+│   │   ├── constants.php           # Definições de constantes, limites e nonces
+│   │   └── security.php            # Geração de chaves de ofuscação dinâmicas
+│   ├── core/
+│   │   ├── FontalisBot.php         # Lógica principal, loop do agente e execução de ferramentas
+│   │   ├── GeminiConfig.php        # Configuração da API Gemini e definições de Tools (Schema JSON)
+│   │   └── JsonLoader.php          # Carregamento seguro de arquivos JSON
+│   ├── modules/
+│   │   ├── analytics/              # Tracking de uso de tokens e métricas
+│   │   ├── cache/                  # Gerenciamento de cache (Redis/Transients)
+│   │   ├── history/                # Histórico de conversas por sessão
+│   │   ├── security/               # Rate limiting, sessões seguras, auditoria
+│   │   └── woocommerce/            # Integração com carrinho e produtos
+│   └── utils/
+│       └── Logger.php              # Sistema de logging com sanitização
+├── frontend/
+│   ├── css/                        # Estilos do chat (desktop e mobile)
+│   ├── js/                         # Scripts do chat com módulos ES6
+│   └── templates/                  # Template PHP do widget de chat
+├── includes/
+│   ├── WP_Hooks.php                # Registro de hooks WordPress/AJAX
+│   ├── plugin-loader.php           # Autoloader PSR-4
+│   └── database-setup.php          # Criação de tabelas personalizadas
+└── fontalis-chatbot.php            # Arquivo principal do plugin
 ```
 
 ## FAQ Técnico
 
 ### Por que existe um tratamento específico para objetos vazios no payload JSON?
+
 Na função `encode_payload_to_json` em `FontalisBot.php`, arrays vazios em `functionCall["args"]` são convertidos explicitamente para objetos `(object) []`. Isso é necessário porque a API do Google Gemini espera que argumentos de função sejam sempre objetos JSON `{}`, e o PHP serializa arrays vazios como `[]` por padrão, o que pode causar erros de validação na API.
 
 ### Como a segurança das chaves é gerenciada em um ambiente open source?
+
 O arquivo `backend/config/security.php` utiliza a função `wp_salt()` do WordPress para gerar uma chave de ofuscação (`FONTALIS_CHATBOT_OBFUSCATION_KEY`). Como cada instalação do WordPress possui um salt único no `wp-config.php`, a chave derivada é única para cada site, impedindo que vetores de ataque sejam replicados entre diferentes instalações do plugin.
 
 ### Como o sistema lida com o limite de tokens e loops infinitos?
+
 A classe `FontalisBot` implementa um loop de controle com `MAX_STEPS = 5`. Isso impede que o agente entre em um ciclo infinito de chamadas de função (ex: o modelo tentando chamar uma ferramenta repetidamente). Além disso, o uso de tokens é monitorado e registrado via `Messenger` para análise de custos e performance.
+
+## Contribuindo
+
+Contribuições são bem-vindas! Por favor:
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
+
+## Licença
+
+Este projeto é distribuído sob a licença GPL-2.0 ou posterior, compatível com o ecossistema WordPress.
+
+---
+
+**Esse README foi feito com [Buildmydocs](https://buildmydocs.dev)**
