@@ -17,13 +17,29 @@ if (! defined('WPINC')) {
 }
 
 // Chave de Ofuscação para a Chave Privada da Vertex AI
-// SEGURANÇA: Gerada dinamicamente a partir do wp_salt() único de cada instalação WordPress.
+// SEGURANÇA: Gerada dinamicamente a partir de constantes únicas de cada instalação WordPress.
 // Isso garante que cada site tenha sua própria chave, mesmo com código aberto.
 if (! defined('FONTALIS_CHATBOT_OBFUSCATION_KEY')) {
-	// Gera uma chave única para esta instalação usando o salt do WordPress.
-	// Cada site WordPress tem um wp_salt() único definido em wp-config.php,
-	// então esta chave será diferente em cada instalação.
-	$generated_key = hash('sha256', wp_salt('fontalis_chatbot_obfuscation'));
+	// Usa constantes que SEMPRE existem no WordPress (definidas em wp-config.php)
+	// NONCE_SALT e AUTH_SALT são únicos por instalação
+	$salt_source = '';
+
+	if (defined('NONCE_SALT')) {
+		$salt_source .= NONCE_SALT;
+	}
+	if (defined('AUTH_SALT')) {
+		$salt_source .= AUTH_SALT;
+	}
+	if (defined('ABSPATH')) {
+		$salt_source .= ABSPATH;
+	}
+
+	// Fallback caso nenhuma constante esteja definida (muito raro)
+	if (empty($salt_source)) {
+		$salt_source = 'fontalis_default_salt_' . php_uname('n');
+	}
+
+	$generated_key = hash('sha256', $salt_source . 'fontalis_chatbot_obfuscation');
 	define('FONTALIS_CHATBOT_OBFUSCATION_KEY', $generated_key);
 }
 
