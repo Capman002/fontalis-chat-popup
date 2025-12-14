@@ -1,0 +1,682 @@
+@font-face {
+  font-family: "Google Sans Flex";
+  src: url("../fonts/Google_Sans_Flex/GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+#fontalis-plugins
+  *:not(i):not([class*="icon"]):not([class*="fa-"]):not([class*="eicon-"]) {
+  box-sizing: border-box;
+  font-family: "Google Sans Flex", sans-serif !important;
+}
+
+/* Reset cirúrgico apenas para botões contaminados pelo tema */
+#fontalis-plugins :is(.btn, .button, button, [type="submit"], [type="button"]) {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  cursor: pointer;
+}
+#fontalis-plugins p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#fontalis-plugins .wd-content-layout {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Container Principal */
+#fontalis-plugins .fontalis-main-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+#fontalis-plugins .fontalis-content-wrapper {
+  width: 100% !important;
+}
+
+/* Chat Container */
+#fontalis-plugins .fontalis-chat-container {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  position: relative !important;
+  height: calc(100dvh - 80px) !important;
+  width: 100% !important;
+}
+#fontalis-plugins .fontalis-chat-initial {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* --- Sidebar --- */
+#fontalis-plugins .fontalis-chat-sidebar {
+  width: 260px !important;
+  background-color: #f9f9f9 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  border-right: 1px solid #e5e7eb !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  position: absolute !important;
+  height: 100% !important;
+  z-index: 99;
+}
+
+#fontalis-plugins .fontalis-chat-sidebar.collapsed {
+  width: 60px !important;
+}
+
+/* Esconde elementos quando colapsado */
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-search-wrapper,
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-recent-label,
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-history-list,
+#fontalis-plugins
+  .fontalis-chat-sidebar.collapsed
+  .fontalis-new-chat-wrapper
+  span {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Header da Sidebar */
+#fontalis-plugins .fontalis-sidebar-header {
+  padding: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 64px !important;
+}
+
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-sidebar-header {
+  justify-content: center !important;
+  padding: 16px 0 !important;
+}
+
+/* Botão Toggle (Hambúrguer) */
+#fontalis-plugins .fontalis-sidebar-toggle {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: #444746 !important;
+  font-size: 18px !important;
+  padding: 8px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background-color 0.2s !important;
+  flex-shrink: 0 !important;
+}
+
+#fontalis-plugins .fontalis-sidebar-toggle:hover {
+  background-color: #e0e4e9 !important;
+}
+
+/* Search Wrapper */
+#fontalis-plugins .fontalis-search-wrapper {
+  position: relative !important;
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+#fontalis-plugins .fontalis-search-wrapper input {
+  width: 100% !important;
+  padding: 8px 12px 8px 36px !important;
+  border-radius: 20px !important;
+  border: 1px solid #e5e7eb !important;
+  font-size: 14px !important;
+  color: #444746 !important;
+  outline: none !important;
+  background-color: #fff !important;
+  transition: all 0.2s !important;
+  height: 36px !important;
+}
+
+#fontalis-plugins .fontalis-search-wrapper input:focus {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  border-color: #d3d7dc !important;
+}
+
+#fontalis-plugins .fontalis-search-wrapper i {
+  position: absolute !important;
+  left: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* Botão Nova Conversa */
+#fontalis-plugins .fontalis-new-chat-wrapper {
+  padding: 0 16px 8px !important;
+}
+
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-new-chat-wrapper {
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+#fontalis-plugins .fontalis-new-chat-btn {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 16px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #444746 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border-radius: 20px !important;
+  transition: background-color 0.2s !important;
+}
+
+#fontalis-plugins .fontalis-chat-sidebar.collapsed .fontalis-new-chat-btn {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  justify-content: center !important;
+}
+
+#fontalis-plugins .fontalis-new-chat-btn:hover {
+  background-color: #e0e4e9 !important;
+}
+
+#fontalis-plugins .fontalis-new-chat-btn svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #444746 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Label Recentes */
+#fontalis-plugins .fontalis-recent-label {
+  padding: 16px 24px 8px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: #444746 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Lista de Histórico */
+#fontalis-plugins .fontalis-history-list {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 0 16px 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+#fontalis-plugins .fontalis-history-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  color: #444746 !important;
+  font-size: 14px !important;
+  transition: background-color 0.2s !important;
+  overflow: hidden !important;
+  min-height: 40px !important;
+}
+
+#fontalis-plugins .fontalis-history-item span {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  flex: 1 !important;
+}
+
+#fontalis-plugins .fontalis-history-item:hover {
+  background-color: #e0e4e9 !important;
+  color: #1f1f1f !important;
+}
+
+#fontalis-plugins .fontalis-history-item.active {
+  background-color: #d3e3fd !important;
+  color: #041e49 !important;
+  font-weight: 500 !important;
+}
+
+#fontalis-plugins .fontalis-history-item i {
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+#fontalis-plugins .fontalis-sidebar-footer {
+  padding: 16px !important;
+  border-top: 1px solid #e5e7eb !important;
+  background-color: #ffffff !important;
+}
+
+#fontalis-plugins .fontalis-sidebar-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 16px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  color: #444746 !important;
+  font-size: 14px !important;
+}
+
+#fontalis-plugins .fontalis-sidebar-item:hover {
+  background-color: #efefef !important;
+}
+
+#fontalis-plugins .fontalis-header-left {
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Messages Header */
+#fontalis-plugins .fontalis-messages-header {
+  padding: 16px 24px !important;
+  margin-left: 50px;
+}
+
+#fontalis-plugins .fontalis-header-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+#fontalis-plugins .fontalis-status-indicator {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#fontalis-plugins .fontalis-status-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background: #10b981 !important;
+  border-radius: 50% !important;
+}
+
+#fontalis-plugins .fontalis-status-text {
+  color: #666 !important;
+}
+
+#fontalis-plugins #fontalis-cartCount {
+  display: none !important;
+  background: black !important;
+  color: white !important;
+  font-size: 12px !important;
+  padding: 4px 8px !important;
+  border-radius: 50px !important;
+}
+
+/* Messages Area */
+#fontalis-plugins #fontalis-chatMessages {
+  max-width: 810px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  overflow-y: auto !important;
+  padding: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  /* Transição fluida para altura */
+  transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  height: auto !important;
+}
+
+/* Altura após a primeira mensagem */
+#fontalis-plugins #fontalis-chatMessages.has-messages {
+  height: 62vh !important;
+}
+
+#fontalis-plugins .fontalis-chat-message {
+  animation: fontalisSlideIn 0.3s ease-out !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+}
+
+#fontalis-plugins .fontalis-message-start {
+  justify-content: flex-start !important;
+}
+
+#fontalis-plugins .fontalis-message-end {
+  justify-content: flex-end !important;
+}
+
+#fontalis-plugins .fontalis-message-wrapper {
+  display: flex !important;
+  gap: 8px !important;
+  margin-top: 2vh !important;
+}
+
+#fontalis-plugins .fontalis-message-wrapper-user {
+  justify-content: flex-end !important;
+}
+
+#fontalis-plugins .fontalis-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+#fontalis-plugins .fontalis-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+#fontalis-plugins .fontalis-avatar-user {
+  background: linear-gradient(to bottom right, #374151, black) !important;
+}
+
+#fontalis-plugins .fontalis-avatar-user img {
+  background: transparent !important;
+}
+
+/* Fallback para navegadores que não suportam :has() */
+#fontalis-plugins .fontalis-avatar-user.has-avatar {
+  background: transparent !important;
+}
+
+#fontalis-plugins .fontalis-avatar-user i {
+  color: white !important;
+  font-size: 12px !important;
+}
+
+#fontalis-plugins .fontalis-message-bubble {
+  padding: 12px 16px !important;
+  border-radius: 20px !important;
+}
+#fontalis-plugins .fontalis-message-h2.fontalis-message-h2-ai {
+  margin: 0 auto !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 2.25rem !important;
+}
+#fontalis-plugins .fontalis-message-bubble-user {
+  border-radius: 20px !important;
+}
+
+#fontalis-plugins .fontalis-message-text {
+  font-size: 16px !important;
+}
+
+#fontalis-plugins .fontalis-message-text-ai {
+  color: #333 !important;
+}
+
+#fontalis-plugins .fontalis-message-text-user {
+  color: white !important;
+}
+
+#fontalis-plugins .fontalis-user-message {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Input Area */
+#fontalis-plugins .fontalis-input-area {
+  width: 100% !important;
+  max-width: 800px !important;
+  margin: 60px auto 0 auto !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  font-family: "Roboto", sans-serif !important;
+}
+
+#fontalis-plugins .fontalis-input-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background-color: #fff !important;
+  border-radius: 32px !important;
+  padding: 18px 8px 18px 24px !important;
+  transition: background-color 0.2s ease !important;
+  border: 1px solid #48484889 !important;
+}
+
+#fontalis-plugins .fontalis-input-wrapper:focus-within {
+  background-color: #bcc6fe5a !important;
+  border-color: #0021dd5a !important;
+}
+
+/* Estado somente leitura para chats encerrados */
+#fontalis-plugins .fontalis-input-wrapper.fontalis-readonly {
+  background-color: #f5f5f5 !important;
+  border-color: #e0e0e0 !important;
+  opacity: 0.7 !important;
+  cursor: not-allowed !important;
+}
+
+#fontalis-plugins
+  .fontalis-input-wrapper.fontalis-readonly
+  .fontalis-input-field {
+  cursor: not-allowed !important;
+  color: #888 !important;
+}
+
+#fontalis-plugins
+  .fontalis-input-wrapper.fontalis-readonly
+  .fontalis-input-field::placeholder {
+  color: #888 !important;
+  opacity: 1 !important;
+}
+
+#fontalis-plugins .fontalis-input-wrapper.fontalis-readonly .fontalis-send-btn {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+#fontalis-plugins .fontalis-input-container {
+  flex: 1 !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: hidden !important;
+}
+
+#fontalis-plugins .fontalis-input-field {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  padding: 12px 0 !important;
+  font-size: 16px !important;
+  color: #1f1f1f !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+#fontalis-plugins .fontalis-placeholder-text {
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 16px !important;
+  color: #999 !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  z-index: 1 !important;
+}
+
+#fontalis-plugins .fontalis-placeholder-cursor {
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 16px !important;
+  color: #999 !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  opacity: 0 !important;
+}
+
+#fontalis-plugins .fontalis-input-field:focus {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+#fontalis-plugins .fontalis-send-button {
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 10px !important;
+  border-radius: 50% !important;
+  color: #444746 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s !important;
+}
+
+#fontalis-plugins .fontalis-send-button:hover {
+  background-color: #e0e4e9 !important;
+  color: #1f1f1f !important;
+}
+
+#fontalis-plugins .fontalis-send-button i {
+  font-size: 18px !important;
+}
+
+#fontalis-plugins .fontalis-send-button span {
+  display: none !important;
+}
+
+@keyframes fontalisSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar Customizada */
+#fontalis-plugins .fontalis-scrollbar-custom::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+#fontalis-plugins .fontalis-scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+#fontalis-plugins .fontalis-scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #e0e0e0 !important;
+  border-radius: 10px !important;
+}
+
+#fontalis-plugins .fontalis-scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #ccc !important;
+}
+
+/* --- Avatar Loading Animation --- */
+
+#fontalis-plugins .fontalis-loading-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 8px 0 !important;
+}
+
+#fontalis-plugins .fontalis-avatar-loading {
+  position: relative !important;
+  display: inline-block !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  flex-shrink: 0 !important;
+}
+
+#fontalis-plugins .fontalis-avatar-loading img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+}
+
+#fontalis-plugins .fontalis-avatar-loading::after {
+  content: "" !important;
+  position: absolute !important;
+  top: -4px !important;
+  left: -4px !important;
+  right: -4px !important;
+  bottom: -4px !important;
+  border-radius: 50% !important;
+  border: 2px solid transparent !important;
+  border-top-color: #ffd700 !important;
+  animation: fontalisSpinLoading 1s ease-in-out infinite !important;
+}
+
+#fontalis-plugins .fontalis-loader-text {
+  font-size: 14px !important;
+  color: #444746 !important;
+  font-weight: 500 !important;
+  transition: opacity 0.2s ease-in-out !important;
+}
+
+@keyframes fontalisSpinLoading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Centralização da Tela Inicial --- */
+/* Aplica estilos apenas quando o chat AINDA NÃO começou (sem a classe .fontalis-chat-active) */
+
+#fontalis-plugins
+  .fontalis-chat-main-area:not(.fontalis-chat-active)
+  #fontalis-chatMessages {
+  margin-top: 10vh !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  flex-grow: 0 !important;
+  height: auto !important;
+}
+
+#fontalis-plugins
+  .fontalis-chat-main-area:not(.fontalis-chat-active)
+  .fontalis-input-area {
+  margin-bottom: auto !important;
+  margin-top: 15vh !important;
+}
+
+/* Ajuste fino para o título na tela inicial */
+#fontalis-plugins
+  .fontalis-chat-main-area:not(.fontalis-chat-active)
+  .fontalis-message-h2 {
+  text-align: center !important;
+  margin-bottom: 0 !important;
+}

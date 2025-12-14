@@ -1,0 +1,61 @@
+@media (max-width: 768px) {
+  #fontalis-plugins .fontalis-chat-container {
+    height: calc(100dvh - 125px) !important;
+  }
+  /* Esconde completamente o sidebar no mobile */
+  #fontalis-plugins .fontalis-chat-sidebar {
+    display: none !important;
+  }
+
+  #fontalis-plugins .fontalis-chat-main-area {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    position: relative !important;
+    width: 100% !important;
+  }
+
+  #fontalis-plugins .fontalis-chat-initial {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Esconde o slot do sidebar no mobile */
+  #fontalis-plugins #fontalis-mobile-sidebar-slot {
+    display: none !important;
+  }
+
+  #fontalis-plugins .fontalis-mobile-header-row {
+    display: none !important;
+  }
+
+  #fontalis-plugins .fontalis-messages-header {
+    padding: 16px 24px !important;
+    margin-left: 0px;
+  }
+
+  #fontalis-plugins
+    .fontalis-chat-main-area:not(.fontalis-chat-active)
+    .fontalis-input-area {
+    width: 100% !important;
+    padding: 0 !important;
+    margin-top: auto !important;
+    position: sticky !important;
+    margin-bottom: 0 !important;
+  }
+
+  #fontalis-plugins .fontalis-message-h2.fontalis-message-h2-ai {
+    font-size: 1.5rem !important;
+  }
+
+  #fontalis-plugins .fontalis-input-wrapper {
+    border-radius: 32px 32px 0 0 !important;
+    padding: 18px 8px 18px 24px !important;
+    border-style: solid !important;
+    border-color: #48484889 !important;
+    border-width: 1px 0px 0 0 !important;
+  }
+}

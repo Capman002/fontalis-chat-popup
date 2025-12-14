@@ -1,0 +1,83 @@
+# ===========================================
+# Fontalis ChatBot - .gitignore
+# Plugin de código aberto - GitHub Safe
+# ===========================================
+
+# ================== IDE & Editor ==================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ================== Sistema Operacional ==================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ================== Logs ==================
+*.log
+logs/
+*.logs
+
+# ================== Arquivos Temporários ==================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+
+# ================== Dependências ==================
+node_modules/
+vendor/
+bower_components/
+
+# ================== Arquivos de Configuração Local ==================
+# NUNCA versionar arquivos com credenciais!
+sftp.json
+sftp-config.json
+ftp-sync.json
+.ftpconfig
+.remote-sync.json
+
+# ================== Variáveis de Ambiente ==================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+*.env
+
+# ================== Arquivos de Build/Compilação ==================
+dist/
+build/
+*.min.js.map
+*.min.css.map
+
+# ================== Cache ==================
+.cache/
+*.cache
+
+# ================== WordPress Específico ==================
+# Logs do plugin (gerados em runtime)
+fontalis-logs/
+
+# ================== Segurança ==================
+# Arquivos que podem conter secrets
+*-secret.*
+*-credentials.*
+*.pem
+*.key
+*.crt
+
+# ================== Testes ==================
+coverage/
+.phpunit.result.cache
+phpunit.xml
