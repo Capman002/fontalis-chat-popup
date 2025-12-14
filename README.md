@@ -8,6 +8,17 @@
 
 Este projeto é um plugin para WordPress que implementa um assistente virtual baseado na API Google Gemini (modelos Flash e Pro). O sistema utiliza _Function Calling_ para integrar capacidades de IA generativa com operações de e-commerce do WooCommerce, permitindo que o assistente busque produtos, gerencie o carrinho de compras e ofereça kits de especialidades baseados em regras de negócio específicas, mantendo diretrizes estritas de moderação de conteúdo.
 
+## Screenshots
+
+<p align="center">
+  <img src="public/fontalis.png" alt="Fontalis Chat - Desktop" width="400"/>
+  <img src="public/fontalis-mobile.png" alt="Fontalis Chat - Mobile" width="400"/>
+</p>
+
+<p align="center">
+  <em>Interface do chat em Desktop e Mobile</em>
+</p>
+
 ## Funcionalidades
 
 - **Integração com Google Gemini API**: Utiliza modelos generativos com configuração de temperatura, TopP e TopK customizáveis.
